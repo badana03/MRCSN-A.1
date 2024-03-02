@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Liceo de Cagayan University">
+    <meta name="author" content="James Ivan Badana">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
@@ -36,19 +38,32 @@
         z-index: 100;
     }
 
-    .header h1 {
-        color: #ffbd00;
+    .title {
         font-size: 32px;
         font-weight: 800;
+    }
+
+    .title:hover {
+        color: 	#ffbd00;
+        transition: 0.5s;
+    }
+
+    .header nav {
+        display: flex;
+        align-items: center;
     }
 
     .header nav a {
         position: relative;
         font-size: 18px;
-        color: #fff;
         font-weight: 500;
         text-decoration: none;
         margin-left: 40px;
+    }
+
+    .header nav a:hover {
+        color: #ffbd00;
+        transition: 0.5s;
     }
 
     .header nav a::before {
@@ -58,12 +73,19 @@
         left: 0;
         width: 0;
         height: 4px;
-        background: #ff0000;
+        background: #b80101;
     }
 
     .header nav a:hover::before {
         width: 100%;
         transition: 0.5s;
+    }
+
+    .header .menu-icon {
+        display: none;
+        font-size: 24px;
+        color: #fff;
+        cursor: pointer;
     }
 
     .content {
@@ -94,17 +116,104 @@
         color: #fff;
     }
 
+    .details a:hover {
+        color: #ff0303;
+        transition: 0.5s;
+    }
+
     .details img {
         width: 20px;
         height: 20px;
         margin-right: 10px;
-    }               
+    } 
+
+    @media screen and (max-width: 768px) {
+        .header {
+            padding: 20px;
+        }    
+
+        .header nav {
+            display: none;
+        }
+
+        .header .menu-icon {
+            display: block;
+        }
+
+        .header .menu-icon:hover {
+            color: #ffbd00;
+            transition: 0.5s;
+        }
+
+        .header .menu-icon::before {
+            content: '\2630';
+        }
+
+        .header .menu-icon.open::before {
+            content: '\2715';
+        }
+
+        .header .menu-icon.open ~ nav {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.75);
+            padding: 20px;
+            z-index: 99;
+        }
+
+        .header .menu-icon.open ~ nav a {
+            margin: 10px 0;
+        }
+
+        .title {
+            font-size: 20px;
+        }
+
+        .content {
+            width: 100%;
+        }
+
+        .content h1 {
+            font-size: 30px;
+            line-height: 40px;
+        }
+
+        .content h3 {
+            margin: 10px 20px;
+            font-size: 18px;
+        }
+
+        .description {
+            margin: 15px 20px;
+            font-size: 13px;
+        }
+
+        .details {
+            margin: 25px 20px;
+            flex-direction: column;
+        }
+
+        .details p, a {
+            margin: 10px 0;
+            font-size: 10px;
+        }
+
+        .details img {
+            width: 20px;
+            height: 20px;
+        }
+    }              
 </style>
 </head>
 <body>
 <div class="main">
     <header class="header">
-        <h1>Student Activity Website</h1>
+        <a href="#" class="title">Student Activity Website</a>
+        <div class="menu-icon"></div>
         <nav>
             <a href="https://www.liceo.edu.ph/">Home</a>
             <a href="https://www.liceo.edu.ph/UserPanel/EventsDetails.aspx">Events</a>
@@ -113,8 +222,8 @@
         </nav>
     </header>
     <div class="content">
-        <h1>Upcoming Event: Foundation Day</h1>
-        <h2>Join our Liceo U Foundation</h2>
+        <h1><b style="color: #ffbd00;">Upcoming Event:</b> <b style="color: #f3efd0;">Foundation Day</b></h1>
+        <h3>Join our <strong style="color: #ff0303;">Liceo</strong> U Foundation</h3>
         <p class="description">Step into a world where movement becomes poetry and rhythm transcends boundaries at the Liceo de Cagayan University Dance Festival, "Harmony in Motion." This electrifying event celebrates the artistry, diversity, and passion of dance, bringing together talented performers from across the region to showcase their skills and ignite the stage with their mesmerizing performances.</p>
         <div class="details">
             <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAW0lEQVR4nO2UQQrAIAwE93nV/7+gPmREaKGXKpiol8w5yZAlRDoFD3Kq2yMAMlCYpwCpJ7AMf7l91p3p3yawouMCrY5IIfgjIiKuyCOi5e86tQLLcOAarhroQwXVoInTFy84KwAAAABJRU5ErkJggg==">
@@ -126,5 +235,14 @@
         </div>
     </div>
 </div>
+<script>
+    const menuIcon = document.querySelector('.menu-icon');
+    const nav = document.querySelector('nav');
+
+    menuIcon.addEventListener('click', () => {
+        menuIcon.classList.toggle('open');
+        nav.classList.toggle('open');
+    });
+</script>
 </body>
 </html>
